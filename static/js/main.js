@@ -21,7 +21,7 @@ new Vue({
         notify() {
             const h = this.$createElement;
             this.$notify({
-                title: "温馨提示",
+                title: "IA para compactar imagens",
                 type: "warning",
                 duration: 5000,
                 message: h('p', [
