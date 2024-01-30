@@ -25,21 +25,21 @@ new Vue({
                 type: "warning",
                 duration: 5000,
                 message: h('p', [
-                    "本工具GitHub地址：",
-                    h('el-link', { attrs: { type: 'primary', underline: false, href: 'https://github.com/youshandefeiyang/ImgUltraCompress', target: '_blank' } }, '点击查看')
+                    "Endereço GitHub desta ferramenta:",
+                    h('el-link', { attrs: { type: 'primary', underline: false, href: 'https://github.com/youshandefeiyang/ImgUltraCompress', target: '_blank' } }, 'Clique para ver')
                 ])
             });
         },
         handleFileChange(file, fileList) {
             const isImage = file.raw.type.startsWith('image/');
             if (!isImage) {
-                this.$message.error('只能上传图片格式文件！');
+                this.$message.error('Somente arquivos em formato de imagem podem ser carregados!');
                 return;
             }
             // 检查是否有同名文件
             const existingFile = this.originalFiles.find(f => f.name === file.raw.name);
             if (existingFile) {
-                this.$message.error('不能上传同名的文件！');
+                this.$message.error('Não é possível fazer upload de arquivos com o mesmo nome！');
                 return;
             }
             this.originalFiles = [...this.originalFiles, ...fileList.map(f => f.raw)];
@@ -53,7 +53,7 @@ new Vue({
                 const compressedFile = await lrz(rawFile, { quality: compressionRatio });
                 this.compressedImages.push({
                     src: compressedFile.base64,
-                    sizeInfo: `压缩后大小: ${(compressedFile.file.size / 1024).toFixed(2)} KB`
+                    sizeInfo: `Tamanho compactado: ${(compressedFile.file.size / 1024).toFixed(2)} KB`
                 });
             }
             this.updatePreview(); // 更新预览区域
